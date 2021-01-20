@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<title>Zadanie3 JavaScript - CallBack - Promise</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript">
+
+		new Promise((resole,reject)=>{
+			setTimeout(()=>{
+				console.log("1. Rozpoczęcie aplikacji...");
+				resole(2);
+			},2000)
+		}).then((response)=>{
+			console.log("2. Przygotowanie do obliczenia...");
+			console.log("3. Liczba 2 * " + response);
+			return response * 2;
+		}).then((response)=>{
+			console.log("4. Wynik mnożenia = " + response);
+		});
+		// zadanie do domu aby przerobić Zadanie2.html na Zadanie3.html
+	</script>
+</body>
+</html>
