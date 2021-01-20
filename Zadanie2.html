@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<title>Zadanie2 JavaScript - CallBack</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript">
+		//system rejestracji użytkownika
+		//1. Wysyłanie danych uzytkownika na serwer....
+		//2. Walidacja danych...
+		//3. Rejestracja uzytkownika...
+		//4. Wysyła maila z potwierdzeniem...
+		//!!!! Kolejność jest ważna
+		const sentUserData = () => {
+			setTimeout(()=>{
+				document.getElementById('box').innerHTML += "1. Wysyłanie danych uzytkownika na serwer....<br>";
+			},3000)
+		}
+
+		const validateData = () => {
+			setTimeout(()=>{
+				document.getElementById('box').innerHTML += "2. Walidacja danych...<br>";
+			},2500)
+		}
+
+		const registerUser = () => {
+			setTimeout(()=>{
+				document.getElementById('box').innerHTML += "3. Rejestracja uzytkownika...<br>";
+			},1500)
+		}
+
+		const sendMail = () => {
+			setTimeout(()=>{
+				document.getElementById('box').innerHTML += "4. Wysyła maila z potwierdzeniem...<br>";
+			},1000)
+		}
+
+		sentUserData();
+		validateData();
+		registerUser();
+		sendMail();
+	</script>
+</body>
+</html>
