@@ -13,21 +13,24 @@
 		//3. Rejestracja uzytkownika...
 		//4. Wysyła maila z potwierdzeniem...
 		//!!!! Kolejność jest ważna
-		const sentUserData = () => {
+		const sentUserData = (CallBack) => {
 			setTimeout(()=>{
 				document.getElementById('box').innerHTML += "1. Wysyłanie danych uzytkownika na serwer....<br>";
+				CallBack();
 			},3000)
 		}
 
-		const validateData = () => {
+		const validateData = (CallBack) => {
 			setTimeout(()=>{
 				document.getElementById('box').innerHTML += "2. Walidacja danych...<br>";
+				CallBack();
 			},2500)
 		}
 
-		const registerUser = () => {
+		const registerUser = (CallBack) => {
 			setTimeout(()=>{
 				document.getElementById('box').innerHTML += "3. Rejestracja uzytkownika...<br>";
+				CallBack();
 			},1500)
 		}
 
@@ -36,11 +39,13 @@
 				document.getElementById('box').innerHTML += "4. Wysyła maila z potwierdzeniem...<br>";
 			},1000)
 		}
-
-		sentUserData();
-		validateData();
-		registerUser();
-		sendMail();
+		//--------------------CALLBACK HELL------------------------------
+		sentUserData(function() {
+			validateData(function() {
+				registerUser(sendMail);	
+			});
+		});
+		//--------------------------------------------------------------
 	</script>
 </body>
 </html>
