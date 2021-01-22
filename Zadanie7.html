@@ -13,28 +13,33 @@
 		//3. Rejestracja uzytkownika...
 		//4. Wysyła maila z potwierdzeniem...
 		//!!!! Kolejność jest ważna
+
+		//var uzytkownik = {
+		//	nazwa:'Arkadiusz Waliczek'
+		//}
+
 		const sentUserData = () => {
 			return new Promise((rozwiazanie,error)=>{
 				setTimeout(()=>{
 					document.getElementById('box').innerHTML += "1. Wysyłanie danych uzytkownika na serwer....<br>";
-					rozwiazanie();
+					rozwiazanie({nazwa:'Arkadiusz Waliczek'});
 				},3000)
 			})
 		}
 
-		const validateData = () => {
+		const validateData = (uzytkownik) => {
 			return new Promise((rozwiazanie,error)=>{	
 				setTimeout(()=>{
 					document.getElementById('box').innerHTML += "2. Walidacja danych...<br>";
-					rozwiazanie();
+					rozwiazanie({nazwa:uzytkownik.nazwa,id:2});
 				},2500)
 			})
 		}
 
-		const registerUser = () => {
+		const registerUser = (uzytkownik) => {
 			return new Promise((rozwiazanie,error)=>{
 				setTimeout(()=>{
-					document.getElementById('box').innerHTML += "3. Rejestracja uzytkownika...<br>";
+					document.getElementById('box').innerHTML +="3. Rej. uzytkownika: "+uzytkownik.nazwa+ " " + uzytkownik.id + "<br>";
 					rozwiazanie();
 				},1500)
 			})
@@ -49,21 +54,17 @@
 			})
 		}
 
-		async function funkcjaAsynchroniczna(){
-
-			await sentUserData();
-			await validateData();
-			await registerUser();
-			await sendMail();
-
-
-			console.log("Zakończono pracę");
-		}
-
-		funkcjaAsynchroniczna();
-
-		console.log("Instrukcja pierwsza .....");
-		console.log("Instrukcja druga .....");
+		sentUserData()
+			.then(nazwaUzytkownika=>{
+				return validateData(nazwaUzytkownika);
+			})
+			.then(registerU=>{
+				return registerUser(registerU);
+			})
+			.then(()=>{
+				return sendMail();
+				console.log("Zakończono przekazywanie operacji właściwości");
+			})
 
 	</script>
 </body>
