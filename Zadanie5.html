@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<title>Zadanie4 JavaScript - CallBack</title>
+	<title>Zadanie5 JavaScript - CallBack</title>
 	<meta charset="utf-8">
 </head>
 <body>
@@ -25,8 +25,9 @@
 		const validateData = () => {
 			return new Promise((rozwiazanie,error)=>{	
 				setTimeout(()=>{
-					document.getElementById('box').innerHTML += "2. Walidacja danych...<br>";
-					rozwiazanie();
+					//document.getElementById('box').innerHTML += "2. Walidacja danych...<br>";
+					//rozwiazanie();
+					error("Validacja danych error");
 				},2500)
 			})
 		}
@@ -62,7 +63,10 @@
 			.then((response)=>{
 			console.log('Zakończono');
 			console.log(response);
-		});
+		}).catch(error=>{
+			console.log("Mój błąd chopie...." + error);
+			//na pierwszym błędzie cały skrypt zatrzyma się
+		})
 	</script>
 </body>
 </html>
