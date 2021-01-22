@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<title>Zadanie2 JavaScript - CallBack</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript">
+		//system rejestracji użytkownika
+		//1. Wysyłanie danych uzytkownika na serwer....
+		//2. Walidacja danych...
+		//3. Rejestracja uzytkownika...
+		//4. Wysyła maila z potwierdzeniem...
+		//!!!! Kolejność jest ważna
+		const sentUserData = () => {
+			return new Promise((rozwiazanie,error)=>{
+				setTimeout(()=>{
+					document.getElementById('box').innerHTML += "1. Wysyłanie danych uzytkownika na serwer....<br>";
+					rozwiazanie();
+				},3000)
+			})
+		}
+
+		const validateData = () => {
+			return new Promise((rozwiazanie,error)=>{	
+				setTimeout(()=>{
+					document.getElementById('box').innerHTML += "2. Walidacja danych...<br>";
+					rozwiazanie();
+				},2500)
+			})
+		}
+
+		const registerUser = () => {
+			return new Promise((rozwiazanie,error)=>{
+				setTimeout(()=>{
+					document.getElementById('box').innerHTML += "3. Rejestracja uzytkownika...<br>";
+					rozwiazanie();
+				},1500)
+			})
+		}
+
+		const sendMail = () => {
+			return new Promise((rozwiazanie,error)=>{
+				setTimeout(()=>{
+					document.getElementById('box').innerHTML += "4. Wysyła maila z potwierdzeniem...<br>";
+					rozwiazanie("Email został wysłany");
+				},1000)
+			})
+		}
+		//--------------------CALLBACK HELL------------------------------
+		// sentUserData(function() {
+		// 	validateData(function() {
+		// 		registerUser(sendMail);	
+		// 	});
+		// });
+		//--------------------------------------------------------------
+		sentUserData()
+			.then(validateData)
+			.then(registerUser)
+			.then(sendMail)
+			.then((response)=>{
+			console.log('Zakończono');
+			console.log(response);
+		});
+	</script>
+</body>
+</html>
