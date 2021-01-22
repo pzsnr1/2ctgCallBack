@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CallBack - Zadanie8 - kalkulator</title>
+</head>
+<body>
+    <div id="wynik">
+
+    </div>
+    <script type="text/javascript">
+        
+        const tablica = [1,2,3,4];
+
+        const mnozenie = el => el * 2;
+        const dodawanie = el => el + 2;
+        const odejmowanie = el => el - 2;
+        //ZD - potęgowanie 
+
+        const operacje = (tablica,callback)=>{
+            for (var i = 0; i < tablica.length; i++) {
+                tablica[i] = callback(tablica[i]);
+            }
+           document.getElementById('wynik').innerHTML += tablica + "<br>"; 
+        }
+
+        operacje(tablica,mnozenie);
+        operacje(tablica,dodawanie);
+        operacje(tablica,odejmowanie);
+    </script>
+</body>
+</html>
